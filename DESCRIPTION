@@ -1,0 +1,15 @@
+Package: ptR
+Type: Package
+Title: Process Trees in R
+Version: 0.1.0
+Date: 2016-04-24
+Author: Gert Janssenswillen, Benoit Depaire
+Maintainer: Gert Janssenswillen <gert.janssenswillen@uhasselt.be>
+Description: A package for the analysis of behaviour in a process tree.
+License: GPL-3
+Depends:
+    R(>= 3.0.0)
+Imports:
+    dplyr
+Suggests:
+RoxygenNote: 5.0.1
