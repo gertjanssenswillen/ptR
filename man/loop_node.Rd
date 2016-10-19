@@ -4,7 +4,7 @@
 \alias{loop_node}
 \title{Loop node}
 \usage{
-loop_node(children, n_iterations_loop)
+loop_node(children, n_iterations_loop, p_redo)
 }
 \description{
 Calculate path dictionary for a loop node based on the children's dictionaries
