@@ -4,7 +4,16 @@
 \alias{path_dictionary}
 \title{Path dictionary}
 \usage{
-path_dictionary(tree, n_iterations_loop)
+path_dictionary(tree, n_iterations_loop, p_redo, xor_probabilities)
+}
+\arguments{
+\item{tree}{A process tree}
+
+\item{p_redo}{Redo probability for loops}
+
+\item{xor_probabilities}{Names list of vectors with probability distribution of all xor constructs}
+
+\item{maximum}{iteration threshold for loops}
 }
 \description{
 Calculate path dictionary for a process tree

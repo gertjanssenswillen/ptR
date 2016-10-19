@@ -6,19 +6,27 @@
 
 
 loop_node <- function(children, n_iterations_loop){
+
 	do <- children[[1]]
 	redo <- children[[2]]
-	exit <- children[[3]]
+	out <- children[[3]]
 
-
-	Repeat <- data.frame(length = 0,n = 1)
-	XORset <- data.frame(length = 0,n = 1)
-
-	for(iterations in 1:n_iterations_loop){
-		Repeat = sequence_node(list(Repeat, redo, do))
-		XORset = choice_node(list(XORset, Repeat))
+	for(iterations in 0:n_iterations_loop){
+		results <- do %>% mutate(p = p*(1-p_redo))
+		for(i in 0:iterations){
+			if(i > 0){
+				results <- merge_sequential_paths(results, redo) %>%
+					mutate(p = p*(p_redo)) %>%
+					simplify_path_list
+				results <- merge_sequential_paths(results, do) %>% simplify_path_list
+			}
+		}
+		results <- merge_sequential_paths(results, out) %>% simplify_path_list
+		results_iter[[iterations+1]] <- results
 	}
+	results <- bind_rows(results_iter) %>%
+		mutate(p = p/sum(n*p)) %>%
+		simplify_path_list()
 
-	sequence_node(list(do, XORset, exit)) %>% simplify %>% return
-
+	return(results)
 }

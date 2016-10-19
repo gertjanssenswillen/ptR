@@ -2,10 +2,15 @@
 #'
 #' @description Calculate path dictionary for a process tree
 #'
+#' @param tree A process tree
+#' @param maximum iteration threshold for loops
+#' @param p_redo Redo probability for loops
+#' @param xor_probabilities Names list of vectors with probability distribution of all xor constructs
+#'
 #' @export path_dictionary
 
 
-path_dictionary <- function(tree, n_iterations_loop){
+path_dictionary <- function(tree, n_iterations_loop, p_redo, xor_probabilities){
 	if(is.null(tree$children)){
 		if(tree$name == "tau")
 			return(data.frame( length = 0,n = 1))

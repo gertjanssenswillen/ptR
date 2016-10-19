@@ -4,7 +4,8 @@ merge_sequential_paths <- function(a,b) {
 	ab <- merge(a,b)
 	ab$n <- ab$a_n * ab$b_n
 	ab$length <- ab$a_length + ab$b_length
-	return(ab %>% select(n,length))
+	ab$p <- ab$a_p * ab$b_p
+	return(ab %>% select(n, length, p))
 }
 
 par_seq <- function(n,k){
@@ -17,5 +18,6 @@ merge_parrallel_paths <- function(a,b) {
 	ab <- merge(a,b)
 	ab$n <- ab$a_n * ab$b_n * mapply(par_seq, ab$a_length, ab$b_length)
 	ab$length <- ab$a_length + ab$b_length
-	return(ab %>% select(length,n))
+	ab$p <- (ab$a_p *  ab$b_p)/mapply(par_seq, ab$a_length, ab$b_length)
+	return(ab %>% select(n, length, p))
 }

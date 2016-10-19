@@ -4,7 +4,7 @@
 \alias{choice_node}
 \title{Choice node}
 \usage{
-choice_node(children)
+choice_node(children, xor_probabilities)
 }
 \description{
 Calculate path dictionary for choice node based on the children's dictionaries
